@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
 		    try {
-			sh "docker rm -f $(sudo docker ps -a -q)"
+			sh "docker rm -f test"
 		   } catch (e) {
 			sh 'echo "Container does not exist"'	
 		}
