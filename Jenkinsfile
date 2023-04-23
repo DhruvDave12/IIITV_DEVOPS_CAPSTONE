@@ -36,7 +36,7 @@ pipeline {
 
        stage('Push to Production') {
             steps {
-                sh 'docker run -it -p 82:80 -d test'
+                sh 'docker run -it -p 82:80 -d test --name test'
             }
        }
     }
