@@ -11,9 +11,17 @@ pipeline {
 		}
 	}	
      }
+	stage('Remove existing container if any') {
+	    steps {
+		script {
+		    sh "docker rm -f $(sudo docker ps -a -q)"
+		}
+	}	
+      }
+
         stage('Building Website') {
             steps {
-                sh 'sudo docker build /home/ubuntu/IIITV_DEVOPS_CAPSTONE/. -t test'
+                sh 'docker build /home/ubuntu/IIITV_DEVOPS_CAPSTONE/. -t test'
             }
        }
 
@@ -25,7 +33,7 @@ pipeline {
 
        stage('Push to Production') {
             steps {
-                sh 'sudo docker run -it -p 82:80 -d test'
+                sh 'docker run -it -p 82:80 -d test'
             }
        }
     }
