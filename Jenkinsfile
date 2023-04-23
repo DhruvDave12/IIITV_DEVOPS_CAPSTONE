@@ -11,14 +11,6 @@ pipeline {
 		}
 	}	
      }
-	stage('Remove existing container if any') {
-	    steps {
-		script {
-		   sh "sudo docker kill test"
-		   sh "sudo docker container rm test"
-		}
-	   }
-      }
         stage('Building Website') {
             steps {
                 sh 'sudo docker build /home/ubuntu/IIITV_DEVOPS_CAPSTONE/. -t test'
