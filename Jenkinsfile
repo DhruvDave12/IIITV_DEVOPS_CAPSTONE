@@ -13,7 +13,10 @@ pipeline {
      }
 	stage('Remove existing container if any') {
 	    steps {
-	       sh 'sudo docker rm -f $(sudo docker ps -a -q)'  
+		script {
+		   sh "sudo docker kill test"
+		   sh "sudo docker container rm test"
+		}
 	   }
       }
         stage('Building Website') {
