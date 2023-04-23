@@ -14,7 +14,11 @@ pipeline {
 	stage('Remove existing container if any') {
             steps {
                 script {
-                    sh "docker rm test"
+		    try {
+			sh "docker rm test"
+		   } catch (e) {
+			sh 'echo "Container does not exist"'	
+		}
                 }
         }       
       }
