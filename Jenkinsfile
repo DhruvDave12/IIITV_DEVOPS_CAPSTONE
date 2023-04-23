@@ -14,7 +14,7 @@ pipeline {
 	stage('Remove existing container if any') {
 	    steps {
 		script {
-		    sh "docker rm -f $(sudo docker ps -a -q)"
+		    sh "docker rm test"
 		}
 	}	
       }
