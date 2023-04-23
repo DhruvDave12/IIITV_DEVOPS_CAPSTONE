@@ -13,7 +13,7 @@ pipeline {
      }
         stage('Building Website') {
             steps {
-                sh 'docker build /home/ubuntu/IIITV_DEVOPS_CAPSTONE/. -t test'
+                sh 'docker build . -t test'
             }
        }
 
