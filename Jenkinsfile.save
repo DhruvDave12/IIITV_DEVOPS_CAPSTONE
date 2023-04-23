@@ -1,19 +1,12 @@
 pipeline {
     agent any
     environment {
-	DOCKER_HUB_CREDS = credentials("6185ba91-d961-4d43-8919-5c835b3a777c")
+	DOCKERHUB_CREDS=credentials("6185ba91-d961-4d43-8919-5c835b3a777c")
     }
     stages {
-	stage('Login to dockerhub') {
-	   steps {
-		script {
-		    sh "docker login -u ${DOCKER_HUB_CREDS_USR} -p ${DOCKER_HUB_CREDS_PSW}"
-		}
-	}	
-     }
 	stage('Remove existing container if any') {
 	    steps {
-	       sh 'sudo docker rm -f $(sudo docker ps -a -q)'  
+	       sh 'sudo docker rm test'  
 	   }
       }
         stage('Building Website') {
