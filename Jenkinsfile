@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
 		    try {
-			sh "docker rm -f test"
+			sh "docker rm -f capstone_container"
 		   } catch (e) {
 			sh 'echo "Container does not exist"'	
 		}
@@ -24,7 +24,7 @@ pipeline {
       }
         stage('Building Website') {
             steps {
-                sh 'docker build . -t test'
+                sh 'docker build . -t capstone_image'
             }
        }
 
@@ -36,7 +36,7 @@ pipeline {
 
        stage('Push to Production') {
             steps {
-                sh 'docker run -it -p 82:80 -d test --name test'
+                sh 'docker run -it -p 82:80 -d --name capstone_container capstone_image'
             }
        }
     }
